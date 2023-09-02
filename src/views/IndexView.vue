@@ -20,7 +20,6 @@ onMounted(() => {
       </div>
     </nav>
     <header class="c-heading">
-      <div class="c-heading__text" data-direction="forward">BLEND</div>
       <div class="c-heading__desc">
         Text animations in web design can elevate your content, making it more engaging and
         memorable. JavaScript, coupled with the GreenSock Animation Platform (GSAP), empowers you to
