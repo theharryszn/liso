@@ -1,0 +1,55 @@
+<!doctype html>
+<html>
+  <head>
+    <style>
+      body {
+        height: 200vh; /* Adding extra scroll height for demonstration */
+      }
+      .target {
+        width: 100px;
+        height: 100px;
+        background-color: lightblue;
+        margin: 50vh auto;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="target"></div>
+
+    <script>
+      // Callback function to handle intersection changes
+      function handleIntersection(entries, observer) {
+        console.log(entries)
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            // Element is entering the viewport
+            const intersectionHeight = entry.intersectionRect.height
+            const viewportHeight = window.innerHeight
+            const scrollProgress = (intersectionHeight / viewportHeight) * 100
+            console.log('Element entered - Scroll Progress:', scrollProgress.toFixed(2) + '%')
+          } else {
+            // Element is leaving the viewport
+            const intersectionHeight = entry.intersectionRect.height
+            const viewportHeight = window.innerHeight
+            const scrollProgress = (intersectionHeight / viewportHeight) * 100
+            console.log('Element left - Scroll Progress:', scrollProgress.toFixed(2) + '%')
+          }
+        })
+      }
+
+      // Create an Intersection Observer instance
+      const options = {
+        root: null, // Use the viewport as the root
+        rootMargin: '0px', // Margin around the root (can be negative)
+        threshold: 0.5 // The percentage of the target element that's visible
+      }
+      const observer = new IntersectionObserver(handleIntersection, options)
+
+      // Get the target element
+      const targetElement = document.querySelector('.target')
+
+      // Start observing the target element
+      observer.observe(targetElement)
+    </script>
+  </body>
+</html>
